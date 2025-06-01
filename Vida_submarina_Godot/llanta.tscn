@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://mnkpkq3rsuec"]
+
+[ext_resource type="Script" uid="uid://decue35ocfhyj" path="res://llanta.gd" id="1_yxe0q"]
+[ext_resource type="Texture2D" uid="uid://cerw15m4pdogm" path="res://llanta.png" id="2_1p11u"]
+[ext_resource type="AudioStream" uid="uid://bfnd6hao502s5" path="res://Error.mp3" id="3_jgyfw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipycp"]
+radius = 114.039
+
+[node name="llanta" type="Area2D"]
+script = ExtResource("1_yxe0q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(299, 253)
+scale = Vector2(0.488281, 0.425781)
+texture = ExtResource("2_1p11u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(294, 256)
+shape = SubResource("CircleShape2D_ipycp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jgyfw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
