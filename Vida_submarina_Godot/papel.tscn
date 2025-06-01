@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://n7fkcqg5cwc0"]
+
+[ext_resource type="Script" uid="uid://br2vfoidauxo2" path="res://papel.gd" id="1_1rjgs"]
+[ext_resource type="Texture2D" uid="uid://c1kkqxywmy333" path="res://papel.png" id="2_75jnf"]
+[ext_resource type="AudioStream" uid="uid://bfnd6hao502s5" path="res://Error.mp3" id="3_08lsh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l66eg"]
+radius = 47.7074
+
+[node name="papel" type="Area2D"]
+script = ExtResource("1_1rjgs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(256, 209)
+texture = ExtResource("2_75jnf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(253, 209)
+shape = SubResource("CircleShape2D_l66eg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_08lsh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

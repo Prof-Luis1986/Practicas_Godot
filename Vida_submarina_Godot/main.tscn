@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://dqm34xrbkhnyv"]
+
+[ext_resource type="Script" uid="uid://bhlcsktj4xyfp" path="res://parallax_background.gd" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://cc75oqpvts63g" path="res://Fondo.png" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cbobcrafkxymc" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cu7hlvk1ha0sd" path="res://fish.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://csn7ma56c882r" path="res://alga.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cqwn5byrsdjr3" path="res://lata.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://mnkpkq3rsuec" path="res://llanta.tscn" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://n7fkcqg5cwc0" path="res://papel.tscn" id="8_kek77"]
+[ext_resource type="AudioStream" uid="uid://b4slor2kibfet" path="res://Fresh - Anno Domini Beats.mp3" id="9_kek77"]
+
+[sub_resource type="Theme" id="Theme_7mycd"]
+
+[sub_resource type="SystemFont" id="SystemFont_272bh"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_lquwl")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_h2yge")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(962, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(0, 1)
+texture = ExtResource("1_ig7tw")
+centered = false
+
+[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground/ParallaxLayer"]
+
+[node name="Fish" parent="." instance=ExtResource("2_0xm2m")]
+position = Vector2(477, 198)
+
+[node name="Alga" parent="." instance=ExtResource("4_1bvp3")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LabelPuntaje" type="Label" parent="CanvasLayer"]
+offset_left = 24.0
+offset_top = 13.0
+offset_right = 203.0
+offset_bottom = 61.0
+theme_override_font_sizes/font_size = 30
+text = "🛟Puntaje: 0"
+
+[node name="LabelVidas" type="Label" parent="CanvasLayer"]
+offset_left = 34.0
+offset_top = 72.0
+offset_right = 196.0
+offset_bottom = 114.0
+theme_override_font_sizes/font_size = 30
+text = "🐠Vidas: 10"
+
+[node name="Lata" parent="." instance=ExtResource("6_7mycd")]
+
+[node name="GameOverScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScreen"]
+offset_right = 961.0
+offset_bottom = 731.0
+color = Color(0, 0.0980392, 0.0235294, 0.792157)
+
+[node name="Label" type="Label" parent="GameOverScreen/ColorRect"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 164.0
+offset_right = 857.0
+offset_bottom = 338.0
+theme = SubResource("Theme_7mycd")
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.690196, 0, 1)
+theme_override_fonts/font = SubResource("SystemFont_272bh")
+theme_override_font_sizes/font_size = 100
+text = "Perdiste
+💀☠️"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 171
+
+[node name="llanta" parent="." instance=ExtResource("7_5vw27")]
+
+[node name="papel" parent="." instance=ExtResource("8_kek77")]
+
+[node name="AudioFondo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_kek77")
+autoplay = true
+parameters/looping = true
