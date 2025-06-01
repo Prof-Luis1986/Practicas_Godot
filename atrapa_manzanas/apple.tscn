@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://ds1aarxjpc6oo"]
+
+[ext_resource type="Script" uid="uid://d3yxcrbluc7xd" path="res://apple.gd" id="1_xniv1"]
+[ext_resource type="Texture2D" uid="uid://cxwm6cf07nhdu" path="res://AppleA.png" id="2_aq6lu"]
+[ext_resource type="Texture2D" uid="uid://wo5l3a6wet7o" path="res://AppleB.png" id="3_lpjo0"]
+[ext_resource type="AudioStream" uid="uid://bjr3d6ttn8s1q" path="res://Bite.mp3" id="4_bg8at"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y6mdx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aq6lu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lpjo0")
+}],
+"loop": true,
+"name": &"bite",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aq6lu")
+}],
+"loop": true,
+"name": &"normal",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ej78e"]
+radius = 45.793
+
+[node name="Apple" type="Area2D"]
+position = Vector2(94, 58)
+script = ExtResource("1_xniv1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(117, 114)
+scale = Vector2(0.275, 0.324157)
+sprite_frames = SubResource("SpriteFrames_y6mdx")
+animation = &"normal"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(116, 116)
+shape = SubResource("CircleShape2D_ej78e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bg8at")
+
+[connection signal="body_entered" from="." to="." method="_on_Apple_body_entered"]

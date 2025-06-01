@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhvfhpf2fsed5"]
+
+[ext_resource type="Script" uid="uid://b04vu22jwo45k" path="res://parrot.gd" id="1_14teo"]
+[ext_resource type="Texture2D" uid="uid://b25b7aux5rmfc" path="res://ParrotA.png" id="1_m1dg5"]
+[ext_resource type="Texture2D" uid="uid://csqmd2c8eohq5" path="res://ParrotB.png" id="2_14teo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y2h6v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m1dg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_14teo")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_twwes"]
+radius = 80.5047
+
+[node name="Parrot" type="CharacterBody2D"]
+script = ExtResource("1_14teo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(174, 184.25)
+scale = Vector2(0.564286, 0.560674)
+sprite_frames = SubResource("SpriteFrames_y2h6v")
+animation = &"fly"
+frame = 1
+frame_progress = 0.288969
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(190, 236)
+shape = SubResource("CircleShape2D_twwes")

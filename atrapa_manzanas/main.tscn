@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://7sefjujl4nqe"]
+
+[ext_resource type="Script" uid="uid://dwq2pmdq1dpmu" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cdu5quueuksni" path="res://Fondo2.png" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dhvfhpf2fsed5" path="res://parrot.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://ds1aarxjpc6oo" path="res://apple.tscn" id="3_1bvp3"]
+
+[sub_resource type="SystemFont" id="SystemFont_lquwl"]
+font_names = PackedStringArray("Futura")
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_1bvp3")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(631.218, 494)
+scale = Vector2(1.28363, 1.35655)
+texture = ExtResource("1_h2yge")
+
+[node name="Parrot" parent="." instance=ExtResource("2_h2yge")]
+position = Vector2(-96, 201)
+scale = Vector2(1.2944, 1.35614)
+
+[node name="Apple" parent="." instance=ExtResource("3_1bvp3")]
+position = Vector2(708, 424)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer"]
+offset_left = 340.0
+offset_top = 8.0
+offset_right = 949.0
+offset_bottom = 179.0
+theme_override_fonts/font = SubResource("SystemFont_lquwl")
+theme_override_font_sizes/font_size = 60
+text = "Score: 0"
+horizontal_alignment = 1
